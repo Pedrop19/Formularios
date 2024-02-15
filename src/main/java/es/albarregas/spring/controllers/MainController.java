@@ -1,21 +1,24 @@
 package es.albarregas.spring.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import es.albarregas.spring.models.Alumno;
-import es.albarregas.spring.services.AlumnoService;
+import es.albarregas.spring.services.IAlumnoService;
 
 @Controller
 public class MainController {
 	
 	@Autowired
-	private AlumnoService service;
+	private IAlumnoService service;
 	
 	@GetMapping({"alumno/list"})
 	public String listado(Model model) {
@@ -54,16 +57,24 @@ public class MainController {
 	}
 
 	@PostMapping("/alumno/edit/submit")
-	public String editarAlumnoSubmit(@ModelAttribute("alumnoForm") Alumno alumno) {
-		service.update(alumno);
-		return "index";
+	public String editarAlumnoSubmit(@Valid @ModelAttribute("alumnoForm") Alumno alumno, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			return "edit";
+		}else{
+			service.update(alumno);
+			return "index";
+		}
 	}
 
 	
 	@PostMapping("/alumno/new/submit")
-	public String nuevoAlumnoSubmit(@ModelAttribute("alumnoForm") Alumno nuevoAlumno) {
-		service.add(nuevoAlumno);
-		return "index";
+	public String nuevoAlumnoSubmit(@Valid @ModelAttribute("alumnoForm") Alumno nuevoAlumno, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return "new";
+		}else{
+			service.add(nuevoAlumno);
+			return "index";
+		}
 	}
 
 }

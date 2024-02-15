@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import es.albarregas.spring.models.Alumno;
 
 @Service
-public class AlumnoService {
+public class AlumnoService implements IAlumnoService{
 	
 	private List<Alumno> alumnos = new ArrayList<>();
 	
