@@ -1,12 +1,16 @@
 package es.albarregas.spring.config;
 
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import es.albarregas.spring.upload.storage.StorageProperties;
+
 @Configuration
+@EnableConfigurationProperties(StorageProperties.class)
 public class MyConfig {
 
     @Bean
@@ -22,7 +26,6 @@ public class MyConfig {
     public LocalValidatorFactoryBean getValidator() {
         LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
         bean.setValidationMessageSource(messageResource());
-
         return bean;
     }
 }

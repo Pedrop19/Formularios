@@ -16,6 +16,7 @@ public class Alumno {
 	@Email(message = "{alumno.errorEmail}")
 	private String email;
 	private boolean tieneBeca;
+	private String avatar;
 	
 	public Alumno() {
 	}
@@ -34,6 +35,17 @@ public class Alumno {
 		this.apellidos = apellidos;
 		this.email = email;
 		this.tieneBeca = tieneBeca;
+	}
+
+	
+	public Alumno(@Min(0) Integer id, @NotEmpty String nombre, String apellidos, @Email String email,
+			boolean tieneBeca, String avatar) {
+		this.id = id;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.tieneBeca = tieneBeca;
+		this.avatar = avatar;
 	}
 
 	public Integer getId() {
@@ -74,6 +86,14 @@ public class Alumno {
 
 	public void setTieneBeca(boolean tieneBeca) {
 		this.tieneBeca = tieneBeca;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 	@Override

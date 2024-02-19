@@ -77,7 +77,7 @@
 	<div class="container-fluid d-flex align-items-center justify-content-center flex-column vh-100">
 
 		<h1 class="text-white text-center">Nuevo alumno</h1>
-		<form class="form-horizontal w-50 d-flex flex-column align-items-center justify-content-center" method="post" action="#" th:action="@{/alumno/new/submit}"
+		<form enctype="multipart/form-data" class="form-horizontal w-50 d-flex flex-column align-items-center justify-content-center" method="post" action="#" th:action="@{/alumno/new/submit}"
 			th:object="${alumnoForm}">
 			<!-- Text input-->
 			<div class="form-floating mb-3 w-75">
@@ -110,6 +110,11 @@
 					<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" th:field="*{tieneBeca}" >
 					<label class="form-check-label text-white" for="flexSwitchCheckDefault">Tiene beca</label>
 				  </div>
+			</div>
+
+			<div class="mb-3 mt-3 w-75">
+				<label for="formFile" class="form-label w-100 text-white text-center fs-5">Avatar</label>
+				<input class="form-control" name="file" type="file" id="formFile">
 			</div>
 
 			<!-- Button -->
