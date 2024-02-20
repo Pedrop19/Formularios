@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import es.albarregas.spring.models.Alumno;
 
 @Service
-public class AlumnoService {
+public class AlumnoService implements IAlumnoService{
 	
 	private List<Alumno> alumnos = new ArrayList<>();
 	
@@ -44,9 +44,9 @@ public class AlumnoService {
 	@PostConstruct
 	public void init() {
 		alumnos.addAll(
-				Arrays.asList(new Alumno(1, "Fernando", "Benítez Cano", "fermando@gmail.com"), 
-						new Alumno(2, "Sergio", "García Cortés", "sergio@gmail.com"), 
-						new Alumno(3, "Patricia", "Martínez Flores", "raul@gmail.com"))
+				Arrays.asList(new Alumno(1, "Fernando", "Benítez Cano", "fermando@gmail.com", false, "/person3.png"), 
+						new Alumno(2, "Sergio", "García Cortés", "sergio@gmail.com", false, "/person3.png"), 
+						new Alumno(3, "Patricia", "Martínez Flores", "raul@gmail.com", false, "/person3.png"))
 				);
 	}
 

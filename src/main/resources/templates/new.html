@@ -77,19 +77,21 @@
 	<div class="container-fluid d-flex align-items-center justify-content-center flex-column vh-100">
 
 		<h1 class="text-white text-center">Nuevo alumno</h1>
-		<form class="form-horizontal w-50 d-flex flex-column align-items-center justify-content-center" method="post" action="#" th:action="@{/alumno/new/submit}"
+		<form enctype="multipart/form-data" class="form-horizontal w-50 d-flex flex-column align-items-center justify-content-center" method="post" action="#" th:action="@{/alumno/new/submit}"
 			th:object="${alumnoForm}">
 			<!-- Text input-->
 			<div class="form-floating mb-3 w-75">
-				<input id="id" name="id" type="number" placeholder="Ej. 1" class="form-control input-md w-100"
-					th:field="*{id}">
+				<input id="id" name="id" required type="number" placeholder="Ej. 1" class="form-control input-md w-100"
+					th:field="*{id}">	
 				<label for="id">Identificador</label>
 			</div>
+			<p class="alert alert-danger" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Error</p>
 			<div class="form-floating mb-3 w-75">
 				<input id="nombre" name="nombre" type="text" placeholder="Ej. José"
 					class="form-control input-md" th:field="*{nombre}">
 				<label for="nombre">Nombre</label>
 			</div>
+			<p class="alert alert-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error</p>
 			<div class="form-floating mb-3 w-75">
 				<input id="apellidos" name="apellidos" type="text" placeholder="Ej. Pérez"
 					class="form-control input-md"  th:field="*{apellidos}">
@@ -100,6 +102,7 @@
 					class="form-control input-md"  th:field="*{email}">
 				<label for="email">Correo electrónico</label>
 			</div>
+			<p class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</p>
 
 			<!-- Checkbox-->
 			<div class="checkbox">
@@ -107,6 +110,11 @@
 					<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" th:field="*{tieneBeca}" >
 					<label class="form-check-label text-white" for="flexSwitchCheckDefault">Tiene beca</label>
 				  </div>
+			</div>
+
+			<div class="mb-3 mt-3 w-75">
+				<label for="formFile" class="form-label w-100 text-white text-center fs-5">Avatar</label>
+				<input class="form-control" name="file" type="file" id="formFile">
 			</div>
 
 			<!-- Button -->

@@ -2,13 +2,21 @@ package es.albarregas.spring.models;
 
 import java.util.Objects;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+
 public class Alumno {
 	
+	@Min(value = 0, message = "{alumno.errorID}")
 	private Integer id;
+	@NotEmpty(message = "{alumno.errorNombre}")
 	private String nombre;
 	private String apellidos;
+	@Email(message = "{alumno.errorEmail}")
 	private String email;
 	private boolean tieneBeca;
+	private String avatar;
 	
 	public Alumno() {
 	}
@@ -20,12 +28,24 @@ public class Alumno {
 		this.email = email;
 	}
 
-	public Alumno(Integer id, String nombre, String apellidos, String email, boolean tieneBeca) {
+	public Alumno(@Min(0) Integer id, @NotEmpty String nombre, String apellidos, @Email String email,
+			boolean tieneBeca) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.email = email;
 		this.tieneBeca = tieneBeca;
+	}
+
+	
+	public Alumno(@Min(0) Integer id, @NotEmpty String nombre, String apellidos, @Email String email,
+			boolean tieneBeca, String avatar) {
+		this.id = id;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.tieneBeca = tieneBeca;
+		this.avatar = avatar;
 	}
 
 	public Integer getId() {
@@ -66,6 +86,14 @@ public class Alumno {
 
 	public void setTieneBeca(boolean tieneBeca) {
 		this.tieneBeca = tieneBeca;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 	@Override

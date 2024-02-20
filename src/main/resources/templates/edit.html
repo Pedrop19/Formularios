@@ -78,7 +78,7 @@
 	<div class="container-fluid d-flex align-items-center justify-content-center flex-column vh-100">
 
 		<h1 class="text-white text-center">Actualizar alumno</h1>
-		<form class="form-horizontal w-50 d-flex flex-column align-items-center justify-content-center" method="post" action="#" th:action="@{/alumno/edit/submit}"
+		<form enctype="multipart/form-data" class="form-horizontal w-50 d-flex flex-column align-items-center justify-content-center" method="post" action="#" th:action="@{/alumno/edit/submit}"
 			th:object="${alumnoForm}">
 			<!-- Text input-->
 			<div class="form-floating mb-3 w-75">
@@ -91,6 +91,7 @@
 					class="form-control input-md"  th:field="*{nombre}">
 				<label for="nombre">Nombre</label>
 			</div>
+			<p class="alert alert-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error</p>
 			<div class="form-floating mb-3 w-75">
 				<input id="apellidos" name="apellidos" type="text" placeholder="Ej. Pérez"
 					class="form-control input-md"  th:field="*{apellidos}">
@@ -101,6 +102,7 @@
 					class="form-control input-md"  th:field="*{email}">
 				<label for="email">Correo electrónico</label>
 			</div>
+			<p class="alert alert-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</p>
 
 			<!-- Checkbox-->
 			<div class="checkbox">
@@ -110,6 +112,15 @@
 				  </div>
 			</div>
 
+			<div class="text-center mt-2">
+				<img th:src="@{${avatar}}" width="64px" class="rounded-5" alt="...">
+			</div>
+
+			<div class="mb-3 mt-3 w-75">
+				<label for="formFile" class="form-label w-100 text-white text-center fs-5">Cambiar Avatar</label>
+				<input class="form-control" name="file" type="file" id="formFile">
+			</div>
+
 			<!-- Button -->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="enviar"></label>
@@ -117,6 +128,9 @@
 					<button type="submit" id="enviar" name="enviar" class="btn btn-danger">Actualizar</button>
 				</div>
 			</div>
+
+
+
 
 		</form>
 	</div>
