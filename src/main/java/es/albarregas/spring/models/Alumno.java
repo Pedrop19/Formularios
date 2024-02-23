@@ -2,21 +2,42 @@ package es.albarregas.spring.models;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 
+@Entity
+@Table(name="alumnos")
 public class Alumno {
 	
-	@Min(value = 0, message = "{alumno.errorID}")
+	@Id @GeneratedValue
 	private Integer id;
+
+	@Column(nullable = false, length = 15)
 	@NotEmpty(message = "{alumno.errorNombre}")
 	private String nombre;
+	//? @Column(name="apellidos") Con esto se puede cambiar el nombre de la columna en la base de datos
+	//? @Nullable @Column(name="apellidos") Con esto se puede permitir que el campo sea nulo
+	//? @Insertable @Column(name="apellidos") Con esto se puede permitir que el campo sea insertable
+	//? @Updateable @Column(name="apellidos") Con esto se puede permitir que el campo sea actualizable
+	//? @Length(min=2, max=50) @Column(name="apellidos") Con esto se puede limitar la longitud del campo
+	@Column(length = 30)
 	private String apellidos;
 	@Email(message = "{alumno.errorEmail}")
+	@Column(length = 50)
 	private String email;
 	private boolean tieneBeca;
 	private String avatar;
+	//? @ManyToOne Muchos alumnos pueden tener un tutor
+	//? @OneToOne Solo un alumno puede tener un tutor
+	//? @OneToMany Un tutor puede tener muchos alumnos
+	//? @ManyToMany Muchos alumnos pueden tener muchos tutores
+	// private Tutor tutor;
 	
 	public Alumno() {
 	}
@@ -46,6 +67,13 @@ public class Alumno {
 		this.email = email;
 		this.tieneBeca = tieneBeca;
 		this.avatar = avatar;
+	}
+
+	public Alumno(@NotEmpty String nombre, String apellidos, @Email String email, boolean tieneBeca) {
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.email = email;
+		this.tieneBeca = tieneBeca;
 	}
 
 	public Integer getId() {

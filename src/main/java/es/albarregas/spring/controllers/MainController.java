@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import es.albarregas.spring.models.Alumno;
-import es.albarregas.spring.services.IAlumnoService;
+import es.albarregas.spring.services.AlumnoService;
 import es.albarregas.spring.upload.storage.StorageFileNotFoundException;
 import es.albarregas.spring.upload.storage.StorageService;
 
@@ -28,7 +28,7 @@ import es.albarregas.spring.upload.storage.StorageService;
 public class MainController {
 
 	@Autowired
-	private IAlumnoService service;
+	private AlumnoService service;
 
 	@Autowired
 	private StorageService storageService;
@@ -67,7 +67,7 @@ public class MainController {
 
 	@PostMapping("alumno/delete/submit")
 	public String borrarAlumnoSubmit(@ModelAttribute("alumnoForm") Alumno alumno) {
-		service.delete(alumno.getId());
+		service.delete(alumno);
 		return "index";
 	}
 
