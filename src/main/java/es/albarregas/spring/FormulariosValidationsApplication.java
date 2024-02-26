@@ -34,11 +34,12 @@ public class FormulariosValidationsApplication {
 
 			repository.findAll().forEach(System.out::println);
 
-			// repository.saveAll(
-			// 	Arrays.asList(new Alumno("Patricia", "Martínez Flores", "patricia@gmail.com", false)),
-			// 	new Alumno("Raul", "García Cortés", "raul@gmail.com", false),
-			// 	new Alumno("Sergio", "García Cortés", "sergio@gmai.com", false)
-			// ));
+			repository.saveAll(Arrays.asList(new Alumno("Fernando", "Benítez Cano", "fernando@gmail.com", false),
+					new Alumno("Sergio", "García Cortés", "sergio@gmail.com", false),
+					new Alumno("Patricia", "García Cortés", "patricia@gmail.com", false),
+					new Alumno("Alberto", "García Cortés", "alberto@gmail.com", false)));
+
+			repository.findAll().forEach(System.out::println);
 		};
 	}
 
