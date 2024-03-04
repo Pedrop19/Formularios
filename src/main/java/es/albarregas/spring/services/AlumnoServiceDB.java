@@ -41,4 +41,10 @@ public class AlumnoServiceDB implements AlumnoService{
         repository.delete(a);
     }
 
+    @Override
+    public List<Alumno> seeker(String str) {
+        //? return repository.findByNombreContainsIgnoreCaseOrApellidosContainsIgnoreCase(str, str);
+        //? return repository.findByNombreJPQL(str);
+        return repository.findByNombreSQL(str);
+    }
 }

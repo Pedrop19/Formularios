@@ -1,6 +1,7 @@
 package es.albarregas.spring.controllers;
 
 import javax.validation.Valid;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -35,8 +36,9 @@ public class MainController {
 
 
 	@GetMapping({ "alumno/list" })
-	public String listado(Model model) {
-		model.addAttribute("listadoAlumnos", service.findAll());
+	public String listado(Model model, @RequestParam(name = "q", required = false) String query) {
+		List<Alumno> resultado = (query == null) ? service.findAll() : service.seeker(query);
+		model.addAttribute("listadoAlumnos", resultado);
 		return "list";
 	}
 

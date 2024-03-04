@@ -10,4 +10,5 @@ public interface AlumnoService {
     public Alumno findById(int id);
     public Alumno update(Alumno a);
     public void delete(Alumno a);
+    public List<Alumno> seeker(String str);
 }

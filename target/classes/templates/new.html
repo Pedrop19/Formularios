@@ -44,8 +44,19 @@
 					</li>
 				</ul>
 			</div>
+
 			<div class="container col-4 d-flex justify-content-end"
 				style="background-color: #000 !important; border-radius: 0px 10px 10px 0px; height: 49px !important;">
+				<div class="mt-1 mx-2">
+					<form class="d-flex" role="search">
+						<input class="form-control" type="search" placeholder="Buscar" name="q" th:value="${param.q}">
+						<button class="btn btn-success" type="submit">
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+								<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+							  </svg>
+						</button>
+					</form>
+				</div>
 				<div class="dropdown mt-1">
 					<button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 						<span th:text="${#authentication.name}">Menú</span> <span class="caret"></span>
